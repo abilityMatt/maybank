@@ -1,0 +1,24 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  namespace: maybank
+  name: maybank-web-ingress
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    nginx.org/lb-method: "round_robin"
+spec:
+  rules:
+    - host: maybank-web-app.local
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: maybank-webapp-service
+                port:
+                  number: 8080
+  tls:
+    - hosts:
+        - maybank-webapp-service
+      secretName: maybank-tls

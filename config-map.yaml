@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  namespace: maybank
+  name: maybank-config-map
+data:
+  somedatakey: somedatavalue
